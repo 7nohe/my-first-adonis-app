@@ -5,8 +5,8 @@ import vine from '@vinejs/vine'
  */
 export const createTodoValidator = vine.compile(
   vine.object({
-    title: vine.string().trim().minLength(6),
-    description: vine.string().trim().escape(),
+    title: vine.string().trim().minLength(1),
+    description: vine.string().trim().escape().minLength(1),
   })
 )
 
@@ -15,8 +15,8 @@ export const createTodoValidator = vine.compile(
  */
 export const updateTodoValidator = vine.compile(
   vine.object({
-    title: vine.string().trim().minLength(6),
-    description: vine.string().trim().escape(),
+    title: vine.string().trim().minLength(1),
+    description: vine.string().trim().escape().minLength(1),
     isCompleted: vine.boolean(),
   })
 )
