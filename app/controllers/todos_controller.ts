@@ -21,15 +21,10 @@ export default class TodosController {
    */
   async index({ inertia, auth }: HttpContext) {
     const todos = await Todo.all()
-    const user = auth.user
+    const user = auth.getUserOrFail()
     return inertia.render('todos/index', {
       todos: todos.map((t) => new TodoDto(t).toJson()),
-      user: user
-        ? {
-            id: user.id,
-            fullName: user.fullName,
-          }
-        : null,
+      user: { fullName: user.fullName },
     })
   }
 
